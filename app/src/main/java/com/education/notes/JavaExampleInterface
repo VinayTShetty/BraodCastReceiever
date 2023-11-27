@@ -1,0 +1,53 @@
+// Callback.java (Interface)
+ interface Callback {
+    void onResult(int result);
+}
+
+// Calculator.java (Normal Class)
+ class Calculator {
+    private Callback callback;
+
+    // Setter method to set the callback
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
+    // Method to perform addition and invoke the callback
+    public void add(int a, int b) {
+        int result = a + b;
+        if (callback != null) {
+            callback.onResult(result);
+        }
+    }
+
+    // Method to perform subtraction and invoke the callback
+    public void subtract(int a, int b) {
+        int result = a - b;
+        if (callback != null) {
+            callback.onResult(result);
+        }
+    }
+}
+
+// Main.java (Example Usage)
+public class Main implements Callback {
+
+    // Implementing the onResult method from the Callback interface
+    @Override
+    public void onResult(int result) {
+        System.out.println("Result: " + result);
+    }
+
+    public static void main(String[] args) {
+        // Create an instance of Calculator
+        Calculator calculator = new Calculator();
+
+        // Create an instance of Main (which implements Callback) and set it as the callback for the calculator
+        Main main = new Main();
+        calculator.setCallback(main);
+
+        // Perform addition and subtraction operations
+        calculator.add(5, 3);  // Output: Result: 8
+        calculator.subtract(10, 4);  // Output: Result: 6
+    }
+}

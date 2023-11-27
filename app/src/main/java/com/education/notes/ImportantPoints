@@ -1,0 +1,14 @@
+Steps for Implementing BroadCast Receiever.
+
+1)Create a class that extends BroadCastReceiever.
+2)OverRide Onreceieve method to provide implementation.
+3)OnReceieve intent Local variable get the Action required.
+4)Check the intent Action for the Receiever.
+
+
+In the MainActivity/Activity.
+
+1)Regsiter the Receiever in OnStart()
+2)UnRegister in OnStop
+
+In manifest file Declare the permission.
